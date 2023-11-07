@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Taches{% endblock %}
+
+{% block body %}
+    <h1>Edit Taches</h1>
+
+    {{ include('taches/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="/projets/{{tach.getIdProjet().getId()}}/task"> back to list </a>
+
+    {{ include('taches/_delete_form.html.twig') }}
+{% endblock %}

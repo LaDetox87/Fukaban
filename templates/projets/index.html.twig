@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjetsController!{% endblock %}
+
+{% block body %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+    {% for projet in projets %}
+        <div>
+        <h2> <a href="/projets/{{projet.GetId()}}/task"> {{ projet.getNom() }} </a> </h2>
+        <li> {{ projet.getDescription() }} </li>
+        <li> Création : {{ projet.getDateCreation()|date('d-m-Y') }} </li>
+        <li> Dernière modification : {{ projet.getDateModification()|date('d-m-Y') }} </li>
+        <li>
+            <a href="{{ path('app_projets_show', {'id': projet.id}) }}">show</a>
+        </li>
+        <li>
+            <a href="{{ path('app_projets_edit', {'id': projet.id}) }}">edit</a>
+        </li>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+{% include(path('app_login')) %}
+
+{% endif %}
+
+{% endblock %}
